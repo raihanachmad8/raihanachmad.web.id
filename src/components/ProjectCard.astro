@@ -3,7 +3,7 @@ import { Image } from "astro:assets";
 const { title, tags, cover, id, startDate, endDate, summary } = Astro.props;
 
 // Function to format the date
-const formatDate = (date) => new Date(date).toLocaleDateString('en-US', {
+const formatDate = (date: any) => new Date(date).toLocaleDateString('en-US', {
   year: 'numeric', month: 'short', day: 'numeric'
 });
 ---

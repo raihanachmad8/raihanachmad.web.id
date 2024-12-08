@@ -41,8 +41,8 @@ const {
     
     <!-- Job Goals List -->
     <ul class="list-inside list-disc pl-5 space-y-2 text-sm text-gray-700 dark:text-gray-300">
-        {goals.map((goal: string, index: number) => (
-            <li key={index} class="text-justify">{goal}</li>
+        {goals.map((goal: string) => (
+            <li class="text-justify">{goal}</li>
         ))}
     </ul>
 </div>

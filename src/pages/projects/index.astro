@@ -3,18 +3,8 @@ import Layout from "../../layouts/Layout.astro";
 import { getCollection } from "astro:content";
 import ProjectCardList from "@/components/ProjectCardList.astro";
 
-interface Project {
-  id: string;
-  data: {
-    title: string;
-    summary: string;
-    tags: string[];
-    cover: ImageMetadata;
-    startDate: string;
-    endDate: string;
-  };
-}
 
+// Fetch all projects from the collection
 const allProjects = await getCollection("projects");
 ---
 
@@ -31,12 +21,12 @@ const allProjects = await getCollection("projects");
 
     <section class="flex flex-col gap-8">
       {allProjects.length > 0 ? (
-        allProjects.map((project: Project) => (
+        allProjects.map((project) => (
           <ProjectCardList
-            id={project.id}
-            title={project.data.title}
+            id={project.id} 
+            title={project.data.title}  
             tags={project.data.tags}
-            cover={project.data.cover}
+            cover={project.data.cover}  
             summary={project.data.summary}
             startDate={project.data.startDate}
             endDate={project.data.endDate}

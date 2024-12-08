@@ -1,19 +1,8 @@
 // 1. Import utilities from `astro:content`
-import {defineCollection, reference, z} from 'astro:content';
+import {defineCollection, z} from 'astro:content';
 
 // 2. Import loader(s)
 import { glob } from 'astro/loaders';
-
-// 3. Define your collection(s)
-/*const blog = defineCollection({
-    loader: glob({ pattern: "**\/!*.mdx", base: "./src/content/blog" }),
-    schema: z.object({
-        title: z.string(),
-        date: z.date(),
-        content: z.string(),
-        relatedPosts: z.array(reference('blog')),
-    }),
-});*/
 
 const projects = defineCollection({
     loader: glob({ pattern: "**/*.mdx", base: "./src/content/projects" }),

@@ -25,7 +25,6 @@ const {
 	author= SITE.author,
 	scrollSmooth,
 	canonicalURL = new URL(Astro.url.pathname, Astro.site).href,
-	imageOg = SITE.ogImage,
 } = Astro.props;
 
 ---
@@ -50,13 +49,11 @@ const {
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
 		<meta property="og:url" content={canonicalURL} />
-		<meta property="og:image" content={imageOg} />
 		<!-- Twitter -->
 		<meta property="twitter:card" content="summary_large_image" />
 		<meta property="twitter:url" content={canonicalURL} />
 		<meta property="twitter:title" content={title} />
 		<meta property="twitter:description" content={description} />
-		<meta property="twitter:image" content={imageOg} />
 
 		<title>{title}</title>
 		<ClientRouter />
