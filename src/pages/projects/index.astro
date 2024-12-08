@@ -1,0 +1,50 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+import ProjectCardList from "@/components/ProjectCardList.astro";
+
+interface Project {
+  id: string;
+  data: {
+    title: string;
+    summary: string;
+    tags: string[];
+    cover: ImageMetadata;
+    startDate: string;
+    endDate: string;
+  };
+}
+
+const allProjects = await getCollection("projects");
+---
+
+<Layout
+  title="Achmad Raihan | Portfolio | My Projects"
+  description="A list of my best projects"
+  scrollSmooth={false}
+>
+  <main class="container py-24 flex flex-col gap-8" role="main">
+    <!-- Projects Section -->
+    <section class="border-b pb-8">
+      <h2 class="text-3xl font-bold text-gray-900 dark:text-white">All My Projects</h2>
+    </section>
+
+    <section class="flex flex-col gap-8">
+      {allProjects.length > 0 ? (
+        allProjects.map((project: Project) => (
+          <ProjectCardList
+            id={project.id}
+            title={project.data.title}
+            tags={project.data.tags}
+            cover={project.data.cover}
+            summary={project.data.summary}
+            startDate={project.data.startDate}
+            endDate={project.data.endDate}
+          />
+        ))
+      ) : (
+        <p class="text-gray-500 dark:text-gray-400">No projects found.</p>
+      )}
+    </section>
+  </main>
+</Layout>

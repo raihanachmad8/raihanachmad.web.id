@@ -1,0 +1,48 @@
+---
+import { Image } from "astro:assets";
+const { title, tags, cover, id, summary, startDate, endDate } = Astro.props;
+
+// Format dates in a more readable form
+const formatDate = (date) =>
+  new Date(date).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
+---
+
+<a href={`/projects/${id}`} class="block w-full">
+  <article
+    class="relative flex flex-col bg-white text-gray-700 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+  >
+    <!-- Image Section -->
+    <div class="relative overflow-hidden h-52">
+      <Image
+        src={cover}
+        alt={`Cover image of ${title}`}
+        class="object-cover w-full h-full rounded-t-xl"
+        loading="eager"
+        transition:name={`${id}-image`}
+      />
+    </div>
+
+    <!-- Project Details -->
+    <div class="p-4 flex flex-col gap-2">
+      <!-- Tags -->
+      <p class="text-sm text-gray-600 dark:text-gray-400 line-clamp-2 truncate">{tags.join(", ")}</p>
+
+      <!-- Title and Date -->
+      <div class="flex justify-between items-center">
+        <h4 class="font-semibold text-xl text-gray-900 dark:text-white">
+          {title}
+        </h4>
+        <div class="text-sm text-gray-500 dark:text-gray-400">
+          <p>{formatDate(startDate)} - {formatDate(endDate)}</p>
+        </div>
+      </div>
+
+      <!-- Short Summary (Optional) -->
+      <p class="text-sm text-gray-500 dark:text-gray-300 line-clamp-2 text-justify">{summary}</p>
+    </div>
+  </article>
+</a>

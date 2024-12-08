@@ -1,0 +1,48 @@
+---
+import { Badge } from "./ui/badge";
+import { formatDatetime } from "../lib/utils";
+
+interface Job {
+    title: string;
+    company: string;
+    location: string;
+    startDate: string;
+    endDate: string;
+    goals: string[];
+    currentJob: boolean;
+}
+
+const { jobData } = Astro.props;
+const {
+    title,
+    company,
+    location,
+    startDate,
+    endDate,
+    goals,
+    currentJob,
+} = jobData as Job;
+---
+
+<div class="flex flex-col gap-4">
+    <!-- Job Title -->
+    <h3 class="text-2xl font-semibold text-gray-800 dark:text-white">{title}</h3>
+    
+    <!-- Job Info (Company, Date, Location) -->
+    <div class="flex items-center gap-3 text-sm text-gray-600 dark:text-gray-300">
+        <Badge className="bg-primary-light dark:bg-primary-dark px-4 py-1 rounded-full text-sm font-medium">{formatDatetime(startDate)} - {currentJob ? "Present" : formatDatetime(endDate)}</Badge>
+        
+        <div class="flex items-center gap-2">
+            <p class="text-sm font-semibold text-gray-700 dark:text-gray-200">{company}</p>
+            <span class="text-lg text-gray-500">/</span>
+            <p class="text-sm text-gray-600 dark:text-gray-400">{location}</p>
+        </div>
+    </div>
+    
+    <!-- Job Goals List -->
+    <ul class="list-inside list-disc pl-5 space-y-2 text-sm text-gray-700 dark:text-gray-300">
+        {goals.map((goal: string, index: number) => (
+            <li key={index} class="text-justify">{goal}</li>
+        ))}
+    </ul>
+</div>

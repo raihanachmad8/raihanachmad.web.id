@@ -1,0 +1,69 @@
+---
+import personalExperience from "@/data/PersonalProjects"
+import projectExperience from "@/data/Jobs"
+import education from "@/data/education"
+import languages from "../data/languages"
+import hardSkills from "@/data/hardSkills"
+import softSkills from "@/data/softSkills"
+import JobDetails from "./JobDetails.astro";
+
+import {ME} from '@/config';
+import EduDetail from "./EduDetail.astro";
+import SkillCard from "./SkillCard.astro";
+---
+
+<div class="relative flex flex-col gap-8 text-n700 dark:text-text-dark w-full mt-10 px-4">
+    {/*Description or About me -- Section*/}
+    <div class="mb-4 text-justify">
+        <p>
+            {ME.aboutMe}
+        </p>
+    </div>
+    {/*Project experience section*/}
+    <div class="mb-4">
+        <h2 class="text-3xl font-bold mb-4">Project Experience</h2>
+        <div class="flex flex-col gap-6">
+            {projectExperience.map((job) => (
+                    <JobDetails jobData={job}/>
+            ))}
+        </div>
+    </div>
+
+    {/*Personal experience section*/}
+    <div class="mb-4">
+        <h2 class="text-3xl font-bold mb-4">Personal Projects</h2>
+        <div class="flex flex-col gap-6">
+            {personalExperience.map((job) => (
+                    <JobDetails jobData={job}/> 
+            ))}
+        </div>
+    </div>
+    
+    {/*Education section*/}
+    <div class="mb-4">
+        <h2 class="text-3xl font-bold mb-4">Education</h2>
+        <div class="flex flex-col gap-6">
+            {education.map((edu) => (
+                    <EduDetail eduData={edu}/>
+            ))}
+        </div>
+    </div>
+    {/*Skills section*/}
+    <div class="mb-4">
+        <h2 class="text-3xl font-bold mb-4">Hard Skills</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {hardSkills.map((skill) => (
+                    <SkillCard {...skill} showDescription={true}/>
+            ))}
+        </div>
+    </div>
+    {/*Hobbies section*/}
+    <div class="mb-4">
+        <h2 class="text-2xl font-bold mb-4">Soft Skills</h2>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+            {softSkills.map((skill) => (
+                    <SkillCard {...skill} showDescription={false}/>
+            ))}
+        </div>
+    </div>
+</div>
