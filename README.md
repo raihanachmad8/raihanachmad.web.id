@@ -41,7 +41,7 @@ Follow these steps to set up the project locally.
 
     ```sh
     git clone <repository-url>
-    cd astro-simple-portfolio
+    cd raihanachmad-portfolio
     ```
 
 2. **Install dependencies:**
